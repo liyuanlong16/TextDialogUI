@@ -1,0 +1,83 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:showDividers="middle">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:src="@drawable/myicon" />
+            <!--解决blackground拉伸导致图片变形的方法
+                利用放在drawable文件夹下的创建新的xml方式进行引用，
+            -->
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/myicon" />
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pen_bg" />
+
+            <!--正常图像-->
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/android_log" />
+            <!-- 限制了最大宽度与高度,并且设置了调整边界来保持所显示图像的长宽比-->
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5px"
+                android:adjustViewBounds="true"
+                android:maxHeight="200px"
+                android:maxWidth="200px"
+                android:src="@drawable/android_log" />
+
+            <!-- 保持图片的横纵比缩放,知道该图片能够显示在ImageView组件上,并将缩放好的图片显示在imageView的右下角 -->
+            <ImageView
+                android:layout_width="300px"
+                android:layout_height="300px"
+                android:layout_margin="5px"
+                android:scaleType="fitEnd"
+                android:src="@drawable/android_log" />
+
+            <ImageView
+                android:layout_width="300px"
+                android:layout_height="300px"
+                android:layout_margin="5px"
+                android:scaleType="fitEnd"
+                android:src="@drawable/android_log" />
+
+            <ImageView
+                android:layout_width="300px"
+                android:layout_height="300px"
+                android:layout_margin="5px"
+                android:scaleType="fitEnd"
+                android:src="@drawable/android_log" />
+
+            <ImageView
+                android:id="@+id/transto"
+                android:layout_width="300px"
+                android:layout_height="300px"
+                android:layout_margin="5px"
+                android:scaleType="fitEnd"
+                android:src="@drawable/icon" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

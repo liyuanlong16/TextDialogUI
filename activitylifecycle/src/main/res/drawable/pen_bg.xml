@@ -1,0 +1,10 @@
+<!--解决blackground拉伸导致图片变形的方法
+      利用放在drawable文件夹下的创建新的xml方式进行引用，
+  -->
+
+<bitmap
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="top"
+    android:src="@drawable/myicon"
+    android:tileMode="disabled" >
+</bitmap>
