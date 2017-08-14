@@ -10,21 +10,28 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
+        android:focusable="false"
         android:background="@drawable/yi" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
+        <EditText
             android:id="@+id/aName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
+            android:background="@null"
+            android:editable="false"
+            android:maxLines="3"
             android:paddingLeft="20dp"
+            android:focusable="false"
             android:text="犬"
             android:textSize="60px" />　
 
@@ -33,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
+            android:focusable="false"
             android:paddingLeft="10dp"
             android:text="それは犬" />
 
