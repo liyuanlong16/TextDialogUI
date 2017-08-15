@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                                 aAdapter.remove(contextPosition);
                             }
                             if(position == 1) {//update
+                                //contextView 可以拿到点击的view然后通过view得到控件去进行操作
                                 setAlertDialog(contextView,contextPosition);
                             }
                         }
@@ -135,7 +136,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setAlertDialog(View view,  int contextPosition) {
         edt = new EditText(mcontext);
-        edt.setText(mData.get(contextPosition).getAname());
+        EditText ed = (EditText)view.findViewById(R.id.aName);
+        edt.setText(ed.getText().toString());
         deleteNum = contextPosition;
         new  AlertDialog.Builder(mcontext)
                 .setTitle("请输入" )
