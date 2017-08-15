@@ -12,6 +12,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+/**
+ * activity的周期
+ * activity的传值跳转
+ * 输入框的自动补全AutoCompleteTextView的控件
+ * 图片拉伸变形的解决方法
+ * 自动播放图片的幻灯片效果(带有下一张 上一张 停止 播放效果)
+ * **/
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,14 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
     View.OnClickListener listener = new View.OnClickListener() {
         public void onClick(View view) {
-//            AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
-//                    .setTitle("入力して" )
-//                    .setIcon(android.R.drawable.ic_dialog_info)
-//                    .setView(new EditText(MainActivity.this))
-//                    .setPositiveButton("はい" , null)
-//                    .setNegativeButton("いいえ" ,  null )
-//                    .show();
-//            dialog.setCanceledOnTouchOutside(false);// Dialog不消失
             //信息捎带的跳转
             Intent intent = new Intent(MainActivity.this, ImageViewActivity.class);
             //采用Intent普通传值的方式
