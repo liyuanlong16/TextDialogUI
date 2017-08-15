@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ImageViewActivity extends AppCompatActivity {
 
@@ -19,6 +20,12 @@ public class ImageViewActivity extends AppCompatActivity {
 
         ImageView transto =(ImageView) findViewById(R.id.transto);
         transto.setOnClickListener(listener);
+
+        TextView informationTextView =(TextView) findViewById(R.id.informationTextView);
+        Bundle bundle = this.getIntent().getExtras();
+        String name = (String)bundle.get("name");
+        String sex = (String)bundle.get("sex");
+        informationTextView.setText("あなたの名前は"+name+"\n"+"性別は"+sex);
 
     }
     View.OnClickListener listener = new View.OnClickListener() {
