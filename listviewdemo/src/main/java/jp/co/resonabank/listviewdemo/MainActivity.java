@@ -1,7 +1,11 @@
 package jp.co.resonabank.listviewdemo;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.BitmapFactory;
+import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -11,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -28,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     private float mRawX;
     private float mRawY;
+    private EditText edt;
+    private int deleteNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,20 +68,6 @@ public class MainActivity extends AppCompatActivity {
         popupMenuItemList.add("delete");
         popupMenuItemList.add("update");
 
-//        PopupList popupList = new PopupList(this);
-//        popupList.bind(animalListView, popupMenuItemList, new PopupList.PopupListListener() {
-//            @Override
-//            public boolean showPopupList(View adapterView, View contextView, int contextPosition) {
-//                return true;
-//            }
-//
-//
-//            @Override
-//            public void onPopupListClick(View contextView, int contextPosition, int position) {
-//                Toast.makeText(MainActivity.this, contextPosition + "," + position, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
     }
 
 
@@ -85,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             switch (view.getId()) {
                 case R.id.addAnimal:
                     //do something
+                    mData.add(new Animal((aAdapter.getCount() + 1) + "", "こちらは" + (aAdapter.getCount() + 1), R.drawable.san));
                     aAdapter.add(new Animal((aAdapter.getCount() + 1) + "", "こちらは" + (aAdapter.getCount() + 1), R.drawable.san));
                     break;
                 case R.id.removeAnimal:
@@ -94,12 +88,18 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
+
     AdapterView.OnItemClickListener animalListViewListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            Toast.makeText(MainActivity.this, mData.get(i).getaSpake(), Toast.LENGTH_SHORT).show();
+            EditText ed = (EditText)view.findViewById(R.id.aName);
+            Toast.makeText(MainActivity.this, ed.getText().toString(), Toast.LENGTH_SHORT).show();
         }
     };
+
+    //    View view = null ;
+//    int i = 0;
     //長按删除
     AdapterView.OnItemLongClickListener animalListViewLogClickListener = new AdapterView.OnItemLongClickListener() {
 
@@ -108,34 +108,49 @@ public class MainActivity extends AppCompatActivity {
         public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
-            PopupList popupList = new PopupList(view.getContext());
-            popupList.showPopupListWindow(view, i, mRawX, mRawY, popupMenuItemList, new PopupList.PopupListListener() {
-                @Override
-                public boolean showPopupList(View adapterView, View contextView, int contextPosition) {
-                    return true;
-                }
+                    PopupList popupList = new PopupList(view.getContext());
+                    popupList.showPopupListWindow(view, i, mRawX, mRawY, popupMenuItemList, new PopupList.PopupListListener() {
+                        @Override
+                        public boolean showPopupList(View adapterView, View contextView, int contextPosition) {
+                            return true;//false时 弹框不出现
+                        }
 
 
-                @Override
-                public void onPopupListClick(View contextView, int contextPosition, int position) {
-                    Toast.makeText(contextView.getContext(), contextPosition + "," + position, Toast.LENGTH_SHORT).show();
-                    if (position == 0) {//delete
-                        aAdapter.remove(contextPosition);
-                    }
-                }
+                        @Override
+                        public void onPopupListClick(View contextView,   int contextPosition, int position) {
+                            Toast.makeText(contextView.getContext(), contextPosition + "," + position, Toast.LENGTH_SHORT).show();
+                            if (position == 0) {//delete
+                                aAdapter.remove(contextPosition);
+                            }
+                            if(position == 1) {//update
+                                setAlertDialog(contextView,contextPosition);
+                            }
+                        }
             });
-            return true;
+
+            return true;//false时长按后弹框出现的同时 也执行了单击的响应事件
         }
 
     };
 
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//
-//        float mRawX = event.getX();
-//        float mRawY = event.getY();
-//
-//        return false;
-//    }
+    private void setAlertDialog(View view,  int contextPosition) {
+        edt = new EditText(mcontext);
+        edt.setText(mData.get(contextPosition).getAname());
+        deleteNum = contextPosition;
+        new  AlertDialog.Builder(mcontext)
+                .setTitle("请输入" )
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setView(edt)
+                .setPositiveButton("确定", delOn)
+                .setNegativeButton("取消" ,  null )
+                .show();
+    }
+    DialogInterface.OnClickListener delOn = new DialogInterface.OnClickListener(){
 
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            aAdapter.update(deleteNum,edt.getText().toString());
+        }
+
+};
 }
