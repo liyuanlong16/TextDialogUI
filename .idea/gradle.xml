@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/activitylifecycle" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/listviewdemo" />
+            <option value="$PROJECT_DIR$/testprogress" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -1,1 +1,1 @@
-include ':app', ':activitylifecycle', ':HttpURLConnectionDemo', ':listviewdemo'
+include ':app', ':activitylifecycle', ':HttpURLConnectionDemo', ':listviewdemo', ':testprogress', ':testprogress'
